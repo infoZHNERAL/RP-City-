@@ -3,34 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>ZHNERAL RP | Open City</title>
+<title>ZHNERAL RP | Open World</title>
+
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080a0e;font-family:Tahoma,Arial,sans-serif;touch-action:none}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080b10;font-family:Tahoma,Arial,sans-serif;touch-action:none}
 #game{position:fixed;inset:0}
 canvas{display:block;width:100%;height:100%}
-#loading{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;background:#080a0e;color:white;text-align:center;padding:20px}
-.panel{width:100%;max-width:380px;background:#101219;border:1px solid #ff263f;border-radius:20px;padding:25px;box-shadow:0 0 35px #ff263f30}
+
+#loading{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:#080b10;color:white;text-align:center;padding:20px}
+.panel{width:100%;max-width:390px;background:#10151e;border:1px solid #ff263f;border-radius:22px;padding:26px;box-shadow:0 0 35px #ff263f35}
 .panel b{font-size:28px;color:#ff263f}
-#loadMessage{display:block;margin-top:12px;line-height:2}
-#spinner{width:28px;height:28px;border:3px solid #ffffff30;border-top-color:#ff263f;border-radius:50%;margin:18px auto;animation:spin .8s linear infinite}
+#loadMessage{display:block;margin-top:13px;line-height:2}
+#spinner{width:30px;height:30px;border:3px solid #ffffff30;border-top-color:#ff263f;border-radius:50%;margin:18px auto;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 #errorText{display:none;margin-top:12px;color:#ffb9c3;font-size:12px;line-height:2;overflow-wrap:anywhere}
-#retry{display:none;background:#ff263f;color:white;border:0;padding:11px 20px;border-radius:10px;margin-top:12px}
-#top{position:fixed;top:12px;left:12px;right:12px;z-index:5;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
-.badge{background:#080a0ecc;color:white;border:1px solid #ff263f99;border-radius:12px;padding:10px;font-size:12px;font-weight:bold}
-#status{font-size:10px;color:#bbc4cf;margin-top:5px;font-weight:normal}
+#retry{display:none;background:#ff263f;color:white;border:0;padding:12px 22px;border-radius:10px;margin-top:12px}
+
+#top{position:fixed;top:10px;left:10px;right:10px;z-index:5;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
+.badge{background:#080b10dd;color:white;border:1px solid #ff263f99;border-radius:12px;padding:9px 11px;font-size:11px;font-weight:bold;box-shadow:0 2px 10px #0005}
+#status{font-size:9px;color:#b9c3d0;margin-top:5px;font-weight:normal}
 #coordinates{direction:ltr}
-#controls{position:fixed;bottom:22px;left:18px;right:18px;z-index:8;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none}
-#joy{width:124px;height:124px;border-radius:50%;background:#10151b88;border:2px solid #ffffff55;position:relative;pointer-events:auto;touch-action:none}
-#stick{position:absolute;width:50px;height:50px;border-radius:50%;background:#ff263f;border:2px solid white;left:35px;top:35px}
-#buttons{display:flex;flex-direction:column;gap:9px;pointer-events:auto}
-.action{min-width:78px;height:57px;border-radius:15px;border:1px solid #ffffff65;background:#101219e8;color:white;font-size:12px;font-weight:bold;touch-action:none}
-#hint{position:fixed;bottom:158px;left:10px;right:10px;text-align:center;color:white;font-size:11px;text-shadow:0 2px 5px #000;z-index:4;pointer-events:none}
-#reset{position:fixed;right:12px;bottom:12px;z-index:9;color:white;background:#111c;border:1px solid #ffffff55;border-radius:9px;padding:8px 10px;font-size:10px}
-@media(min-width:700px){#joy{width:140px;height:140px}#stick{left:43px;top:43px}#controls{left:28px;right:28px;bottom:25px}.action{height:62px;min-width:90px}#hint{bottom:175px}}
+
+#hint{position:fixed;bottom:160px;left:10px;right:10px;text-align:center;color:white;font-size:11px;text-shadow:0 2px 5px #000;z-index:4;pointer-events:none}
+
+#controls{position:fixed;bottom:20px;left:16px;right:16px;z-index:8;display:flex;justify-content:space-between;align-items:flex-end;pointer-events:none}
+#joy{width:124px;height:124px;border-radius:50%;background:#10151b99;border:2px solid #ffffff65;position:relative;pointer-events:auto;touch-action:none;box-shadow:0 0 18px #0008}
+#stick{position:absolute;width:50px;height:50px;border-radius:50%;background:#ff263f;border:2px solid white;left:35px;top:35px;box-shadow:0 0 14px #ff263f77}
+#buttons{display:flex;flex-direction:column;gap:8px;pointer-events:auto}
+.action{min-width:80px;height:53px;border-radius:14px;border:1px solid #ffffff65;background:#10151fee;color:white;font-size:12px;font-weight:bold;touch-action:none}
+.action:active{background:#ff263f}
+#reset{position:fixed;right:12px;bottom:12px;z-index:9;color:white;background:#111d;border:1px solid #ffffff55;border-radius:9px;padding:8px 10px;font-size:10px}
+
+@media(min-width:700px){
+#joy{width:140px;height:140px}
+#stick{left:43px;top:43px}
+#controls{left:28px;right:28px;bottom:25px}
+.action{height:60px;min-width:95px}
+#hint{bottom:175px}
+}
 </style>
 </head>
+
 <body>
 
 <div id="game"></div>
@@ -38,16 +52,19 @@ canvas{display:block;width:100%;height:100%}
 <div id="loading">
   <div class="panel">
     <b>ZHNERAL RP</b>
-    <span id="loadMessage">در حال بارگذاری شهر سه‌بعدی...</span>
+    <span id="loadMessage">در حال ساخت شهر سه‌بعدی...</span>
     <div id="spinner"></div>
-    <small>نسخهٔ آزمایشی شهر آزاد</small>
+    <small>OPEN WORLD • نسخه آزمایشی</small>
     <div id="errorText"></div>
     <button id="retry">تلاش دوباره</button>
   </div>
 </div>
 
 <div id="top">
-  <div class="badge">ZHNERAL RP<div id="status">OPEN CITY • EXPLORATION</div></div>
+  <div class="badge">
+    ZHNERAL RP
+    <div id="status">OPEN CITY • EXPLORATION</div>
+  </div>
   <div class="badge" id="coordinates">X 0 | Z 0</div>
 </div>
 
@@ -56,141 +73,143 @@ canvas{display:block;width:100%;height:100%}
 <div id="controls">
   <div id="joy"><div id="stick"></div></div>
   <div id="buttons">
-    <button class="action" id="run">🏃 دویدن</button>
-    <button class="action" id="view">🎥 تغییر دید</button>
+    <button class="action" id="run">🏃 دویدن: خاموش</button>
+    <button class="action" id="view">🎥 تغییر دوربین</button>
   </div>
 </div>
 
 <button id="reset">شروع دوباره</button>
 
 <script type="module">
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
-const loading = $('loading');
-const loadMessage = $('loadMessage');
-const spinner = $('spinner');
-const errorText = $('errorText');
-const retry = $('retry');
+const loading=$('loading');
+const loadMessage=$('loadMessage');
+const spinner=$('spinner');
+const errorText=$('errorText');
+const retry=$('retry');
 
-retry.onclick = () => location.reload();
+retry.onclick=()=>location.reload();
 
-function showError(error) {
-  spinner.style.display = 'none';
-  loadMessage.textContent = 'بازی بارگذاری نشد.';
-  errorText.style.display = 'block';
-  errorText.textContent =
-    'اینترنت را بررسی کن. جزئیات خطا: ' +
-    (error?.message || String(error));
-  retry.style.display = 'inline-block';
+function showError(error){
+  spinner.style.display='none';
+  loadMessage.textContent='بازی بارگذاری نشد.';
+  errorText.style.display='block';
+  errorText.textContent='اینترنت را بررسی کن. خطا: '+(error?.message||String(error));
+  retry.style.display='inline-block';
   console.error(error);
 }
 
 let THREE;
 
-async function loadThree() {
-  loadMessage.textContent = 'در حال اتصال به موتور سه‌بعدی...';
-
-  const urls = [
+async function loadThree(){
+  const urls=[
     'https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js',
     'https://unpkg.com/three@0.170.0/build/three.module.js'
   ];
 
   let lastError;
 
-  for (const url of urls) {
-    try {
-      THREE = await import(url);
-      return THREE;
-    } catch (error) {
-      lastError = error;
+  for(const url of urls){
+    try{
+      THREE=await import(url);
+      return;
+    }catch(e){
+      lastError=e;
     }
   }
 
-  throw new Error(
-    'کتابخانهٔ سه‌بعدی بارگذاری نشد. اینترنت یا دسترسی به سایت‌های کتابخانه را بررسی کن. ' +
-    (lastError?.message || '')
-  );
+  throw new Error('موتور سه‌بعدی دریافت نشد. اتصال اینترنت را بررسی کن. '+(lastError?.message||''));
 }
 
-let scene, camera, renderer, clock, player, head;
-let legs = [], arms = [];
-let running = false;
-let firstPerson = false;
-let cameraAngle = 0;
-let joyX = 0, joyY = 0;
-let rotating = false, lastX = 0;
-let elapsed = 0;
+let scene,camera,renderer,clock,player;
+let legs=[],arms=[];
+let running=false;
+let firstPerson=false;
+let cameraAngle=0;
+let joyX=0,joyY=0;
+let elapsed=0;
+let rotating=false,lastX=0;
 
-const wallColors = [
+const wallColors=[
   0xc8bcae,0xaeb7bd,0xd7d0c4,0x9aa8b1,
-  0xb9a99c,0xb5b7b2,0xd2d4d0,0xb6b0a6
+  0xb9a99c,0xb5b7b2,0xd2d4d0,0xb6b0a6,
+  0xc0c6cf,0xb9c6cc
 ];
 
-const glassColors = [0x253c50,0x344f60,0x526b7a,0x1b2e3e];
+const glassColors=[0x253c50,0x344f60,0x526b7a,0x1b2e3e];
 
-function material(color, roughness = .85) {
-  return new THREE.MeshStandardMaterial({
-    color,
-    roughness,
-    metalness: .03
-  });
+function mat(color,roughness=.85,metalness=.02){
+  return new THREE.MeshStandardMaterial({color,roughness,metalness});
 }
 
-function box(w,h,d,color,x,y,z,parent=scene) {
-  const mesh = new THREE.Mesh(
+function box(w,h,d,color,x,y,z,parent=scene,roughness=.85){
+  const mesh=new THREE.Mesh(
     new THREE.BoxGeometry(w,h,d),
-    material(color)
+    mat(color,roughness)
   );
+
   mesh.position.set(x,y,z);
-  mesh.castShadow = false;
-  mesh.receiveShadow = false;
+  mesh.castShadow=false;
+  mesh.receiveShadow=false;
   parent.add(mesh);
   return mesh;
 }
 
-async function start() {
-  try {
+function plane(w,d,color,x,y,z){
+  const m=new THREE.Mesh(
+    new THREE.PlaneGeometry(w,d),
+    new THREE.MeshBasicMaterial({color})
+  );
+  m.rotation.x=-Math.PI/2;
+  m.position.set(x,y,z);
+  scene.add(m);
+  return m;
+}
+
+async function start(){
+  try{
+    loadMessage.textContent='در حال اتصال به موتور سه‌بعدی...';
     await loadThree();
     init();
-  } catch (error) {
-    showError(error);
+  }catch(e){
+    showError(e);
   }
 }
 
-function init() {
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x9bbdd5);
-  scene.fog = new THREE.Fog(0x9bbdd5,125,430);
+function init(){
+  scene=new THREE.Scene();
+  scene.background=new THREE.Color(0x9bbdd5);
+  scene.fog=new THREE.Fog(0x9bbdd5,150,450);
 
-  camera = new THREE.PerspectiveCamera(
-    65, innerWidth/innerHeight, .1, 800
-  );
+  camera=new THREE.PerspectiveCamera(65,innerWidth/innerHeight,.1,900);
 
-  renderer = new THREE.WebGLRenderer({
+  renderer=new THREE.WebGLRenderer({
     antialias:false,
     powerPreference:'high-performance'
   });
 
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1,1.35));
+  renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.3));
   renderer.setSize(innerWidth,innerHeight);
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-
+  renderer.outputColorSpace=THREE.SRGBColorSpace;
   $('game').appendChild(renderer.domElement);
 
-  clock = new THREE.Clock();
+  clock=new THREE.Clock();
 
-  scene.add(new THREE.HemisphereLight(0xe3f2ff,0x686052,2.1));
+  scene.add(new THREE.HemisphereLight(0xe6f3ff,0x5b5548,2.1));
 
-  const sun = new THREE.DirectionalLight(0xffe8c6,2.25);
+  const sun=new THREE.DirectionalLight(0xffe6c1,2.2);
   sun.position.set(-80,150,70);
   scene.add(sun);
 
   createGround();
   createRoads();
-  createBuildings();
+  createCity();
   createParks();
+  createGasStation();
   createCars();
   createStreetProps();
+  createTrafficLights();
   createPlayer();
   setupControls();
 
@@ -198,164 +217,174 @@ function init() {
   resize();
 
   camera.position.set(0,7,12);
-  loading.style.display = 'none';
+  loading.style.display='none';
 
   animate();
 }
 
-function createGround() {
-  const ground = new THREE.Mesh(
+function createGround(){
+  const ground=new THREE.Mesh(
     new THREE.PlaneGeometry(1000,1000),
-    material(0x6e8063)
+    mat(0x708564)
   );
-  ground.rotation.x = -Math.PI/2;
-  ground.position.y = -.22;
+  ground.rotation.x=-Math.PI/2;
+  ground.position.y=-.23;
   scene.add(ground);
 
   box(420,.25,420,0x999a91,0,-.16,0);
 }
 
-function createRoads() {
-  const road = new THREE.MeshStandardMaterial({color:0x30353b});
-  const markings = new THREE.MeshBasicMaterial({color:0xe5dfc6});
+function createRoads(){
+  for(let p=-228;p<=228;p+=57){
+    plane(420,15,0x30343a,0,.012,p);
+    plane(15,420,0x30343a,p,.014,0);
 
-  for(let p=-228;p<=228;p+=57) {
-    const a = new THREE.Mesh(
-      new THREE.PlaneGeometry(420,15),road
-    );
-    a.rotation.x=-Math.PI/2;
-    a.position.set(0,.012,p);
-    scene.add(a);
-
-    const b = new THREE.Mesh(
-      new THREE.PlaneGeometry(15,420),road
-    );
-    b.rotation.x=-Math.PI/2;
-    b.position.set(p,.014,0);
-    scene.add(b);
-
-    for(const s of [-1,1]) {
-      box(420,.18,.5,0xb8b8b1,0,.09,p+s*7.8);
-      box(.5,.18,420,0xb8b8b1,p+s*7.8,.09,0);
+    for(const s of [-1,1]){
+      box(420,.15,.38,0xd0c9b8,0,.09,p+s*7.8);
+      box(.38,.15,420,0xd0c9b8,p+s*7.8,.09,0);
     }
 
-    for(let n=-205;n<205;n+=12) {
-      const d = new THREE.Mesh(
-        new THREE.PlaneGeometry(3.8,.16),markings
-      );
-      d.rotation.x=-Math.PI/2;
-      d.position.set(n,.026,p);
-      scene.add(d);
+    for(let n=-205;n<205;n+=12){
+      plane(3.8,.16,0xf0e5c8,n,.025,p);
+      plane(.16,3.8,0xf0e5c8,p,.027,n);
+    }
 
-      const e = new THREE.Mesh(
-        new THREE.PlaneGeometry(.16,3.8),markings
-      );
-      e.rotation.x=-Math.PI/2;
-      e.position.set(p,.028,n);
-      scene.add(e);
+    // خط عابر پیاده در تقاطع‌ها
+    for(const s of [-1,1]){
+      for(let k=0;k<5;k++){
+        plane(1.1,5,0xf0eee5,p+s*(8.5+k*1.4),.03,p+9);
+        plane(5,1.1,0xf0eee5,p+9,.03,p+s*(8.5+k*1.4));
+      }
     }
   }
 }
 
-function building(x,z,w,d,floors,seed) {
-  const group = new THREE.Group();
+function building(x,z,w,d,floors,seed,options={}){
+  const group=new THREE.Group();
   group.position.set(x,0,z);
 
-  const h = floors*3.15;
-  box(w,h,d,wallColors[seed%wallColors.length],0,h/2,0,group);
+  const h=floors*3.15;
+  const color=options.color??wallColors[seed%wallColors.length];
 
+  box(w,h,d,color,0,h/2,0,group);
   box(w+.25,.5,d+.25,0x777b7b,0,.25,0,group);
 
-  for(let f=1;f<floors;f++) {
+  for(let f=1;f<floors;f++){
     box(w+.07,.09,d+.07,0xe0dbd0,0,f*3.15,0,group);
   }
 
-  const cols = Math.max(2,Math.floor(w/2.1));
+  const cols=Math.max(2,Math.floor(w/2.1));
 
-  for(let f=0;f<floors;f++) {
-    for(let c=0;c<cols;c++) {
+  for(let f=0;f<floors;f++){
+    for(let c=0;c<cols;c++){
       const wx=-w/2+(c+.5)*w/cols;
       const wy=f*3.15+1.55;
       const ww=Math.min(1.18,w/cols*.62);
 
-      box(ww,1.55,.07,glassColors[(seed+f+c)%4],
-          wx,wy,d/2+.045,group);
-
-      box(ww+.1,.07,.12,0xe2ded5,
-          wx,wy+.81,d/2+.06,group);
+      box(ww,1.55,.07,glassColors[(seed+f+c)%4],wx,wy,d/2+.045,group);
+      box(ww+.1,.07,.12,0xe2ded5,wx,wy+.81,d/2+.06,group);
     }
   }
 
   box(w+.4,.23,d+.4,0x777b7c,0,h+.12,0,group);
-  box(1.2,2.2,.1,0x43362e,0,1.1,d/2+.07,group);
 
-  if(seed%3===0) {
-    for(let f=1;f<floors;f+=2) {
-      box(w*.65,.1,.65,0x777c80,
-          0,f*3.15+.25,d/2+.28,group);
-    }
+  // ورودی ساختمان
+  box(1.2,2.2,.1,0x43362e,0,1.1,d/2+.07,group);
+  box(1.35,.12,.14,0xe5d4ad,0,2.25,d/2+.08,group);
+
+  // کولرهای پشت‌بام
+  if(floors>=5){
+    box(1.5,.65,1.2,0x858b91,-w*.22,h+.55,0,group);
+    box(1.2,.5,1,0x686f76,w*.2,h+.45,0,group);
   }
 
   scene.add(group);
 }
 
-function createBuildings() {
+function shop(x,z,color,labelColor){
+  const g=new THREE.Group();
+  g.position.set(x,0,z);
+
+  box(13,5.5,10,color,0,2.75,0,g);
+  box(13.5,.45,10.5,0x343b43,0,5.65,0,g);
+
+  // ویترین
+  box(4.1,2.5,.12,0x23485b,-3,2.1,5.06,g,.3);
+  box(4.1,2.5,.12,0x23485b,3,2.1,5.06,g,.3);
+
+  // در ورودی
+  box(1.3,2.7,.15,0x4c3425,0,1.35,5.1,g);
+  box(13.2,.8,.2,labelColor,0,4.8,5.15,g);
+
+  // تابلو بدون نوشته برای جلوگیری از نوشته‌های ناخوانا
+  box(3,.15,.25,0xf5e7cb,0,4.8,5.28,g);
+
+  scene.add(g);
+}
+
+function createCity(){
   let seed=0;
 
-  for(let bx=-4;bx<=3;bx++) {
-    for(let bz=-4;bz<=3;bz++) {
+  for(let bx=-4;bx<=3;bx++){
+    for(let bz=-4;bz<=3;bz++){
       const cx=bx*57+28.5;
       const cz=bz*57+28.5;
 
-      if(Math.abs(cx)<24 && Math.abs(cz)<24) continue;
+      if(Math.abs(cx)<24&&Math.abs(cz)<24)continue;
 
       seed++;
 
-      if(seed%10===0) {
+      if(seed%10===0){
         park(cx,cz,23,22,seed);
         continue;
       }
 
-      const positions=[
-        [-10,-10],[10,-10],[-10,10],[10,10]
-      ];
+      const positions=[[-10,-10],[10,-10],[-10,10],[10,10]];
 
       positions.forEach((p,i)=>{
-        building(
-          cx+p[0],cz+p[1],
-          12+(seed%3)*2,
-          12+(seed%4),
-          2+((seed+i*3)%8),
-          seed+i
-        );
+        // چند قطعه به مغازه تبدیل می‌شوند
+        if(seed%7===0&&i===0){
+          shop(cx+p[0],cz+p[1],0xb5b7b3,0x2e5270);
+        }else{
+          building(
+            cx+p[0],cz+p[1],
+            12+(seed%3)*2,
+            12+(seed%4),
+            3+((seed+i*3)%9),
+            seed+i
+          );
+        }
       });
     }
   }
 
-  building(-8,-8,13,13,13,24);
-  building(20,-8,17,12,3,31);
+  // ساختمان‌های شاخص مرکز شهر
+  building(-8,-8,13,13,14,24,{color:0x9ca9b4});
+  building(20,-8,17,12,4,31,{color:0xc8c1b5});
+  building(-20,20,15,14,7,38,{color:0xb7c4cb});
+  building(25,23,14,15,6,44,{color:0xc3b8a8});
 }
 
-function tree(x,z,s=1) {
+function tree(x,z,s=1){
   const g=new THREE.Group();
 
   const trunk=new THREE.Mesh(
     new THREE.CylinderGeometry(.17*s,.24*s,1.9*s,7),
-    material(0x6c452c)
+    mat(0x6c452c)
   );
   trunk.position.y=.95*s;
   g.add(trunk);
 
   const leaves=new THREE.Mesh(
     new THREE.SphereGeometry(1*s,8,7),
-    material(0x347448)
+    mat(0x347448)
   );
   leaves.position.y=2.15*s;
   g.add(leaves);
 
   const top=new THREE.Mesh(
     new THREE.SphereGeometry(.68*s,8,6),
-    material(0x43864e)
+    mat(0x43864e)
   );
   top.position.y=2.85*s;
   g.add(top);
@@ -364,12 +393,12 @@ function tree(x,z,s=1) {
   scene.add(g);
 }
 
-function park(x,z,w,d,seed=1) {
+function park(x,z,w,d,seed=1){
   box(w,.13,d,0x4c8050,x,.025,z);
   box(2.7,.09,d-2,0xc8c0ac,x,.12,z);
   box(w-2,.08,2.2,0xc8c0ac,x,.13,z);
 
-  for(let i=0;i<6;i++) {
+  for(let i=0;i<6;i++){
     tree(
       x-w/2+3+(i%3)*6,
       z-d/2+4+Math.floor(i/3)*10,
@@ -377,42 +406,70 @@ function park(x,z,w,d,seed=1) {
     );
   }
 
-  for(let i=0;i<2;i++) {
+  for(let i=0;i<2;i++){
     box(2,.25,.55,0x684b35,x-5+i*10,.35,z+5);
     box(.12,.5,.12,0x44484b,x-5+i*10,.18,z+5);
   }
+
+  // چراغ‌های کوچک پارک
+  for(let i=0;i<2;i++){
+    lamp(x-8+i*16,z+8);
+  }
 }
 
-function createParks() {
+function lamp(x,z){
+  const g=new THREE.Group();
+
+  box(.16,4,.16,0x4b5055,0,2,0,g);
+  box(1.25,.12,.12,0x4b5055,.5,3.85,0,g);
+  box(.58,.18,.3,0xffedba,.9,3.78,0,g);
+
+  g.position.set(x,0,z);
+  scene.add(g);
+}
+
+function createParks(){
   park(-52,0,24,28,3);
   park(62,40,26,24,7);
   park(65,-72,25,24,11);
 }
 
-function lamp(x,z) {
+function createGasStation(){
   const g=new THREE.Group();
-  box(.16,4,.16,0x4b5055,0,2,0,g);
-  box(1.25,.12,.12,0x4b5055,.5,3.85,0,g);
-  box(.58,.18,.3,0xffedba,.9,3.78,0,g);
-  g.position.set(x,0,z);
-  scene.add(g);
-}
+  g.position.set(45,0,15);
 
-function createStreetProps() {
-  for(let p=-171;p<=171;p+=57) {
-    for(let n=-171;n<=171;n+=43) {
-      lamp(n,p+9);
-      lamp(p-9,n);
+  // محوطه
+  box(25,.12,25,0xb5b7b2,0,.05,0,g);
+
+  // ساختمان پمپ‌بنزین
+  box(9,4.2,6,0xe1ded4,-6,2.1,-5,g);
+  box(9,.4,6.2,0xc52635,-6,4.35,-5,g);
+  box(3.5,2,.12,0x284a5d,-6,2.2,-1.92,g);
+
+  // سقف جایگاه
+  box(15,.5,10,0xdadbd6,3,4.5,0,g);
+  box(15,.25,.4,0xc52635,3,4.2,5,g);
+  box(15,.25,.4,0xc52635,3,4.2,-5,g);
+
+  // ستون‌های سقف
+  for(const x of [-3,9]){
+    for(const z of [-4,4]){
+      box(.35,4.1,.35,0xddddda,x,2.1,z,g);
     }
   }
 
-  for(let p=-165;p<=165;p+=20) {
-    tree(p,-11,.78);
-    tree(p,11,.78);
+  // پمپ‌ها
+  for(const x of [0,5.5]){
+    box(1.1,1.9,1.1,0xd5d8da,x,1.15,0,g);
+    box(.8,.5,.12,0x263b49,x,1.55,.57,g);
+    box(.15,.8,.12,0x17191b,x+.65,1.4,.5,g);
+    box(.12,.12,.12,0x191c20,x+.65,1.8,.5,g);
   }
+
+  scene.add(g);
 }
 
-function car(x,z,color,rot=0) {
+function car(x,z,color,rot=0){
   const g=new THREE.Group();
 
   box(2,.72,4,color,0,.78,0,g);
@@ -421,11 +478,11 @@ function car(x,z,color,rot=0) {
   box(1.28,.42,.06,0x80aec4,0,1.47,.87,g);
   box(1.28,.42,.06,0x80aec4,0,1.47,-1.18,g);
 
-  for(const sx of [-1,1]) {
-    for(const sz of [-1,1]) {
+  for(const sx of [-1,1]){
+    for(const sz of [-1,1]){
       const wheel=new THREE.Mesh(
         new THREE.CylinderGeometry(.38,.38,.2,10),
-        material(0x17191b)
+        mat(0x17191b)
       );
       wheel.rotation.z=Math.PI/2;
       wheel.position.set(sx*1.02,.4,sz*1.25);
@@ -443,52 +500,67 @@ function car(x,z,color,rot=0) {
   scene.add(g);
 }
 
-function createCars() {
+function createCars(){
   const colors=[
     0xb5212c,0xd8d8d4,0x303941,0x315d86,
     0xb4a36b,0xeeeeee,0x26352f
   ];
 
-  for(let i=0;i<12;i++) {
+  for(let i=0;i<12;i++){
     const z=-145+i*24;
     car(11.6,z,colors[i%colors.length],Math.PI);
     car(-11.6,z+9,colors[(i+2)%colors.length],0);
   }
 
-  for(let i=0;i<7;i++) {
+  for(let i=0;i<7;i++){
     car(39,-100+i*17,colors[(i+3)%colors.length],Math.PI/2);
   }
 }
 
-function createStreetPropsExtra() {
-  for(const sx of [-1,1]) {
-    for(const sz of [-1,1]) {
-      const x=sx*9.2,z=sz*9.2;
-      box(.15,3.4,.15,0x34383b,x,1.7,z);
-      box(.5,.95,.25,0x202326,x,3.05,z);
+function createStreetProps(){
+  for(let p=-171;p<=171;p+=57){
+    for(let n=-171;n<=171;n+=43){
+      lamp(n,p+9);
+      lamp(p-9,n);
+    }
+  }
+
+  for(let p=-165;p<=165;p+=20){
+    tree(p,-11,.78);
+    tree(p,11,.78);
+  }
+}
+
+function createTrafficLights(){
+  for(const sx of [-1,1]){
+    for(const sz of [-1,1]){
+      const x=sx*9.2;
+      const z=sz*9.2;
+
+      box(.16,3.4,.16,0x34383b,x,1.7,z);
+      box(.55,1.05,.28,0x202326,x,3.05,z);
 
       [0xff3333,0xffc72d,0x37d46b].forEach((color,i)=>{
         const light=new THREE.Mesh(
           new THREE.SphereGeometry(.11,8,6),
           new THREE.MeshBasicMaterial({color})
         );
-        light.position.set(x,3.35-i*.3,z+.14);
+
+        light.position.set(x,3.35-i*.3,z+.16);
         scene.add(light);
       });
     }
   }
 }
 
-function createPlayer() {
+function createPlayer(){
   player=new THREE.Group();
 
-  const body=material(0x222831);
-  const pants=material(0x202c3a);
-  const skin=material(0xc99572);
+  const body=mat(0x222831);
+  const pants=mat(0x202c3a);
+  const skin=mat(0xc99572);
 
-  const l=new THREE.Mesh(
-    new THREE.BoxGeometry(.27,.8,.32),pants
-  );
+  const l=new THREE.Mesh(new THREE.BoxGeometry(.27,.8,.32),pants);
   l.position.set(-.18,.4,0);
   player.add(l);
   legs.push(l);
@@ -498,29 +570,24 @@ function createPlayer() {
   player.add(r);
   legs.push(r);
 
-  const torso=new THREE.Mesh(
-    new THREE.BoxGeometry(.72,.9,.42),body
-  );
+  const torso=new THREE.Mesh(new THREE.BoxGeometry(.72,.9,.42),body);
   torso.position.y=1.25;
   player.add(torso);
 
-  head=new THREE.Mesh(
-    new THREE.SphereGeometry(.25,10,8),skin
-  );
+  const head=new THREE.Mesh(new THREE.SphereGeometry(.25,10,8),skin);
   head.position.y=1.92;
   player.add(head);
 
   const hair=new THREE.Mesh(
-    new THREE.SphereGeometry(.25,8,6),material(0x171616)
+    new THREE.SphereGeometry(.25,8,6),
+    mat(0x171616)
   );
   hair.scale.set(1,.55,1);
   hair.position.y=2.08;
   player.add(hair);
 
-  for(const s of [-1,1]) {
-    const arm=new THREE.Mesh(
-      new THREE.BoxGeometry(.22,.8,.26),body
-    );
+  for(const s of [-1,1]){
+    const arm=new THREE.Mesh(new THREE.BoxGeometry(.22,.8,.26),body);
     arm.position.set(s*.48,1.25,0);
     player.add(arm);
     arms.push(arm);
@@ -532,11 +599,12 @@ function createPlayer() {
   scene.add(player);
 }
 
-function setupControls() {
-  const joy=$('joy'),stick=$('stick');
+function setupControls(){
+  const joy=$('joy');
+  const stick=$('stick');
   let pointer=null;
 
-  function moveStick(e) {
+  function moveStick(e){
     const r=joy.getBoundingClientRect();
     const cx=r.left+r.width/2;
     const cy=r.top+r.height/2;
@@ -546,7 +614,7 @@ function setupControls() {
     const max=40;
     const len=Math.hypot(dx,dy);
 
-    if(len>max) {
+    if(len>max){
       dx=dx/len*max;
       dy=dy/len*max;
     }
@@ -565,10 +633,10 @@ function setupControls() {
   });
 
   joy.addEventListener('pointermove',e=>{
-    if(e.pointerId===pointer) moveStick(e);
+    if(e.pointerId===pointer)moveStick(e);
   });
 
-  function release() {
+  function release(){
     pointer=null;
     joyX=joyY=0;
     stick.style.left=(joy.clientWidth/2-25)+'px';
@@ -578,15 +646,9 @@ function setupControls() {
   joy.addEventListener('pointerup',release);
   joy.addEventListener('pointercancel',release);
 
-  const run=$('run');
-
-  run.addEventListener('pointerdown',e=>{
-    e.preventDefault();
-    running=true;
-  });
-
-  ['pointerup','pointercancel','pointerleave'].forEach(event=>{
-    run.addEventListener(event,()=>running=false);
+  $('run').addEventListener('click',()=>{
+    running=!running;
+    $('run').textContent=running?'🏃 دویدن: روشن':'🏃 دویدن: خاموش';
   });
 
   $('view').addEventListener('click',()=>{
@@ -597,6 +659,8 @@ function setupControls() {
     player.position.set(0,0,0);
     player.rotation.y=0;
     cameraAngle=0;
+    running=false;
+    $('run').textContent='🏃 دویدن: خاموش';
   });
 
   renderer.domElement.addEventListener('pointerdown',e=>{
@@ -615,37 +679,42 @@ function setupControls() {
   addEventListener('pointercancel',()=>rotating=false);
 }
 
-function resize() {
+function resize(){
   if(!camera||!renderer)return;
+
   camera.aspect=innerWidth/innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(innerWidth,innerHeight);
 }
 
-function animate() {
+function animate(){
   requestAnimationFrame(animate);
 
   const dt=Math.min(clock.getDelta(),.05);
   elapsed+=dt;
 
-  if(player) {
+  if(player){
     const speed=running?10:5;
 
-    if(Math.abs(joyX)>.05||Math.abs(joyY)>.05) {
-      const f=-joyY,s=joyX;
+    if(Math.abs(joyX)>.05||Math.abs(joyY)>.05){
+      const f=-joyY;
+      const s=joyX;
+
       const dx=Math.sin(cameraAngle)*f+Math.cos(cameraAngle)*s;
       const dz=Math.cos(cameraAngle)*f-Math.sin(cameraAngle)*s;
 
       player.position.x+=dx*speed*dt;
       player.position.z+=dz*speed*dt;
+
       player.rotation.y=Math.atan2(dx,dz);
 
       const t=elapsed*10*(running?1.35:1);
+
       legs[0].rotation.x=Math.sin(t)*.5;
       legs[1].rotation.x=-Math.sin(t)*.5;
       arms[0].rotation.x=-Math.sin(t)*.35;
       arms[1].rotation.x=Math.sin(t)*.35;
-    } else {
+    }else{
       legs.forEach(v=>v.rotation.x*=.75);
       arms.forEach(v=>v.rotation.x*=.75);
     }
@@ -659,30 +728,27 @@ function animate() {
       player.position.z
     );
 
-    if(firstPerson) {
+    if(firstPerson){
       camera.position.set(
         target.x-Math.sin(cameraAngle)*.15,
         target.y,
         target.z-Math.cos(cameraAngle)*.15
       );
-    } else {
+    }else{
       const desired=new THREE.Vector3(
         target.x+Math.sin(cameraAngle)*8,
-        target.y+8*.72,
+        target.y+5.8,
         target.z+Math.cos(cameraAngle)*8
       );
 
       camera.position.lerp(desired,1-Math.pow(.001,dt));
     }
 
+    // دوربین همیشه به جلوی شخصیت نگاه می‌کند
     camera.lookAt(
-      target.clone().add(
-        new THREE.Vector3(
-          Math.sin(cameraAngle)*10,
-          0,
-          Math.cos(cameraAngle)*10
-        )
-      )
+      target.x+Math.sin(cameraAngle)*10,
+      target.y,
+      target.z+Math.cos(cameraAngle)*10
     );
 
     $('coordinates').textContent=
@@ -692,7 +758,6 @@ function animate() {
   renderer.render(scene,camera);
 }
 
-// شروع شهر؛ خطاها در صفحه نمایش داده می‌شوند.
 start();
 </script>
 </body>
